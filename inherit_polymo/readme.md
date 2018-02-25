@@ -1,6 +1,43 @@
 # C言語によるポリモフィズムの実装
 
-# GCC のめもりれいあうと
+# GCC のメモリレイアウト
+GNU の C++ コンパイラは -fdump-class-hierarchy オプションを使うと、
+vtable のメモリレイアウトをファイルに出力する。
+```
+Vtable for A
+A::_ZTV1A: 4u entries
+0     (int (*)(...))0
+8     (int (*)(...))(& _ZTI1A)
+16    (int (*)(...))__cxa_pure_virtual
+24    (int (*)(...))A::bar
+
+Class A
+   size=16 align=8
+   base size=12 base align=8
+A (0x0x7fc2ca6fa5a0) 0
+    vptr=((& A::_ZTV1A) + 16u)
+
+Vtable for B
+B::_ZTV1B: 4u entries
+0     (int (*)(...))0
+8     (int (*)(...))(& _ZTI1B)
+16    (int (*)(...))B::foo
+24    (int (*)(...))B::bar
+
+Class B
+   size=16 align=8
+   base size=16 base align=8
+B (0x0x7fc2ca58c340) 0
+    vptr=((& B::_ZTV1B) + 16u)
+  A (0x0x7fc2ca6fa600) 0
+      primary-for B (0x0x7fc2ca58c340)
+
+```
+B のインスタンス b1 には vptr が追加されるが、そのアドレスは
+B用の仮想関数テーブルの先頭から 16u (16 word)離れた
+ところを指している。 A についても、仮想関数テーブルの
+先頭アドレスと vptr に設定されるアドレスは 16u 離れている。
+なんのための領域なのか、調査が必要。
 
 # 基底クラスのデフォルト実装の呼び出し
 
