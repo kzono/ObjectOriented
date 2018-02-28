@@ -45,10 +45,10 @@ B用の仮想関数テーブルの先頭から 16u (16 word)離れた
 
 
 最初の１ワードは、オフセット。多重継承のときに使用される。
- -[C++ vtables - Part 1 - Basics ](https://shaharmike.com/cpp/vtable-part1/)
- -[C++ vtables - Part 2 - Multiple Inheritance ](https://shaharmike.com/cpp/vtable-part2/)
- -[ Finish the derived RECORD_TYPE – generate VTT](http://www.it610.com/article/5008795.htm)
- -[Dumping a C++ object's memory layout with Clang](https://eli.thegreenplace.net/2012/12/17/dumping-a-c-objects-memory-layout-with-clang)
+ - [C++ vtables - Part 1 - Basics ](https://shaharmike.com/cpp/vtable-part1/)
+ - [C++ vtables - Part 2 - Multiple Inheritance ](https://shaharmike.com/cpp/vtable-part2/)
+ - [ Finish the derived RECORD_TYPE – generate VTT](http://www.it610.com/article/5008795.htm)
+ - [Dumping a C++ object's memory layout with Clang](https://eli.thegreenplace.net/2012/12/17/dumping-a-c-objects-memory-layout-with-clang)
 
 
 # 基底クラスのデフォルト実装の呼び出し
