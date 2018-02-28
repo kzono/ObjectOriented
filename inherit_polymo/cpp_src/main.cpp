@@ -1,9 +1,12 @@
+#include <stdio.h>
  class A{
    public:
      A(int p):m_p(p){};
      ~A(){};
      virtual void foo() = 0;
-     virtual void bar(){};
+     virtual void bar(){
+       puts("A::bar()");
+     };
    private:
      int m_p;
  };
@@ -12,8 +15,13 @@ class B : public A{
   public:
     B(int p, int q):A(p), m_q(q){};
     ~B(){};
-    void foo(){}
-    void bar(){}
+    void foo(){
+      puts("B::foo()");
+    }
+    void bar(){
+      puts("B::bar()");
+      A::bar();
+    }
   private:
     int  m_q;
 };

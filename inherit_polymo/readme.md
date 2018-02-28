@@ -32,12 +32,24 @@ B (0x0x7fc2ca58c340) 0
   A (0x0x7fc2ca6fa600) 0
       primary-for B (0x0x7fc2ca58c340)
 
+_ZTV1A, _ZTV1B の TV は Table of Virtual Function の略っぽい。
+また、_ZTI1A, _ZTI1B の TI は Type Info の略らしい。
 ```
 B のインスタンス b1 には vptr が追加されるが、そのアドレスは
 B用の仮想関数テーブルの先頭から 16u (16 word)離れた
 ところを指している。 A についても、仮想関数テーブルの
 先頭アドレスと vptr に設定されるアドレスは 16u 離れている。
 なんのための領域なのか、調査が必要。
+==> 最初の１ワードは常に0,２ワード目は typeinfo らしい。
+ - [C++ の仮想関数と VTable について](https://qiita.com/msmania/items/452d4fb4dec76207df87)
+
+
+最初の１ワードは、オフセット。多重継承のときに使用される。
+ -[C++ vtables - Part 1 - Basics ](https://shaharmike.com/cpp/vtable-part1/)
+ -[C++ vtables - Part 2 - Multiple Inheritance ](https://shaharmike.com/cpp/vtable-part2/)
+ -[ Finish the derived RECORD_TYPE – generate VTT](http://www.it610.com/article/5008795.htm)
+ -[Dumping a C++ object's memory layout with Clang](https://eli.thegreenplace.net/2012/12/17/dumping-a-c-objects-memory-layout-with-clang)
+
 
 # 基底クラスのデフォルト実装の呼び出し
 
